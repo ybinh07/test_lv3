@@ -10,12 +10,12 @@ const uri = `mongodb+srv://${username}:${password}@sessionmongo.tpsqgdh.mongodb.
 class DataBaseService {
   constructor() {
     this.client = new MongoClient(uri);
-    this.db=this.client.db(process.env.DATANAME)
+    this.db=this.client.db(process.env.DB_NAME)
   }
     run() {
     try {
            this.client.connect();
-   
+      console.log('connect mgdb successfully')
         
     } catch(error) {
      

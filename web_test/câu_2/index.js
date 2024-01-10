@@ -4,15 +4,16 @@ import { config } from "dotenv";
 import cors from "cors";
 import { database } from "./Database/database.js";
 import { userRoute } from "./Route/userRoute.js";
+database.run();
 
 const app = express()
+app.use(express.json());
 const PORT = 3000
 config();
 
 app.use(morgan('combined'))
-app.use(express.json())
 app.use(cors())
-database.run();
+
 app.use("/user",userRoute)
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT}`)

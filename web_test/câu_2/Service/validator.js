@@ -8,7 +8,7 @@ export const validator = (schema) => {
     if (Object.values(error).length > 0) {
       next(error);
     }
-    // next();
+    next();
   };
 };
 

@@ -3,13 +3,13 @@ import { config } from "dotenv";
 import process from "process";
 config();
 
-// Replace the uri string with your connection string.
-const pass = process.env.PASS;
-const uri = `mongodb+srv://yenbinh237:${pass}@sessionmongo.tpsqgdh.mongodb.net/`;
+const password = process.env.DB_PASS;
+const username = process.env.DB_USERNAME
+const uri = `mongodb+srv://${username}:${password}@sessionmongo.tpsqgdh.mongodb.net/`;
 
 class DataBaseService {
   constructor() {
-     this.client = new MongoClient(uri);
+    this.client = new MongoClient(uri);
     this.db=this.client.db(process.env.DATANAME)
   }
     run() {
@@ -22,7 +22,7 @@ class DataBaseService {
       console.log("error",error);
     }
   }
-   order(){
+  order(){
     return this.db.collection("Order");
   }
   user(){
@@ -33,4 +33,4 @@ class DataBaseService {
   }
 }
 
-export const databaseUnit=new DataBaseService();
+export const database = new DataBaseService();

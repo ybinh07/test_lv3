@@ -1,10 +1,12 @@
 import express from "express";
-import { validateLogin } from "../Service/validater.js";
-import { createLoginAccess } from "../Controller/makeToken.js";
-
-import { getItem, getItemOrder } from "../Controller/getItem.js";
+import { loginValidator } from "../Service/validator.js";
+import { createLoginAccessToken } from "../Controller/creatToken.js";
+import { getInventoryProduct } from "../Controller/getProducts.js";
 import { validateToken } from "../Controller/validateToken.js";
-export const userRoute=express.Router();
-userRoute.get("/get",validateToken,getItem);
-userRoute.get("/getOrder",validateToken,getItemOrder)
-userRoute.post("/login",validateLogin,createLoginAccess);
+import { getDescriptionItem } from "../Controller/getDescriptionItem.js";
+
+export const userRoute = express.Router();
+
+userRoute.get("/getProducts", validateToken, getInventoryProduct);
+userRoute.get("/getOrders", validateToken, getDescriptionItem);
+userRoute.post("/login", loginValidator, createLoginAccessToken);

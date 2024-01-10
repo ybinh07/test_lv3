@@ -1,13 +1,10 @@
 
 import { User } from "../Schema/userSchema.js";
-import { databaseUnit } from "../Database/database.js";
-import { registerHash } from "./hashService.js";
+import { database } from "../Database/database.js";
  class UserService{
     async register(payload){
-        payload.password= await registerHash( toString(payload.password));
-        console.log(payload.password);
-        const result= await databaseUnit.users().insertOne(new User(payload))
-        return 1
+        const result= await database.user().insertOne(new User(payload))
+        return true
     }
 }
 export const userService= new UserService();
